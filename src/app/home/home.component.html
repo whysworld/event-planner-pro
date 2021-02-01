@@ -1,0 +1,130 @@
+<div class="container" #pdfElement>
+  <div class="row">
+    <div [class]="isPrinting ? 'col-100' : 'col-50'">
+      <div class="title">{{title}}</div>
+      <div class="description">
+        {{description}}
+      </div>
+    </div>
+    <div *ngIf="!isPrinting" class="col-50">
+      <div class="events-history">
+        <fieldset>
+          <legend>History</legend>
+          <mat-form-field class="full-width">
+            <mat-label>Previous Events</mat-label>
+            <input matInput [matDatepicker]="datepicker_history" [(ngModel)]="previousEventDate" />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="datepicker_history"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #datepicker_history>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply (click)="findEvent()">
+                  Apply
+                </button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-50">
+      <div class="about-you">
+        <form *ngIf="user" [formGroup]="aboutYou">
+          <fieldset>
+            <legend>About You</legend>
+            <mat-form-field class="full-width">
+              <mat-label>Full Name</mat-label>
+              <input matInput [formControl]="aboutYou?.get('name')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput [formControl]="aboutYou?.get('email')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Phone</mat-label>
+              <input matInput [formControl]="aboutYou?.get('phone')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Address</mat-label>
+              <input matInput [formControl]="aboutYou?.get('address')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>City</mat-label>
+              <input matInput [formControl]="aboutYou?.get('city')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>State</mat-label>
+              <input matInput [formControl]="aboutYou?.get('state')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Zip Code</mat-label>
+              <input matInput [formControl]="aboutYou?.get('zip_code')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Instagram URL</mat-label>
+              <input matInput [formControl]="aboutYou?.get('instagram')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Knot URL</mat-label>
+              <input matInput [formControl]="aboutYou?.get('knot')" />
+            </mat-form-field>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="col-50">
+      <div class="about-event">
+        <form [formGroup]="aboutEvent">
+          <fieldset>
+            <legend>About The Event</legend>
+            <mat-form-field class="full-width">
+              <mat-label>Event Name</mat-label>
+              <input matInput [formControl]="aboutEvent?.get('title')" />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>What Day?</mat-label>
+              <input matInput [matDatepicker]="datepicker_date" [formControl]="aboutEvent?.get('date')"/>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="datepicker_date"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #datepicker_date>
+              </mat-datepicker>
+            </mat-form-field>
+            <div class="full-width">
+              <mat-checkbox [formControl]="aboutEvent?.get('exact')"
+                >Exact Date Only?</mat-checkbox
+              >
+            </div>
+            <mat-form-field appearance="standard">
+              <mat-label>What Time?</mat-label>
+              <mat-select [formControl]="aboutEvent?.get('time')">
+                <mat-option *ngFor="let time of timeList" [value]="time">
+                  {{ time }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Total Guests</mat-label>
+              <input
+                matInput
+                type="number"
+                [formControl]="aboutEvent?.get('guest')"
+              />
+            </mat-form-field>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isPrinting" class="row center">
+    <div class="action">
+      <button mat-raised-button color="primary" style="margin-right: 30px;" (click)="save()">Save</button>
+      <button mat-raised-button color="primary" (click)="preview()">Preview</button>
+    </div>
+  </div>
+</div>

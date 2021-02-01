@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-100">
+      <div class="title">{{ title }}</div>
+      <div class="description">
+        {{ description }}
+      </div>
+    </div>
+  </div>
+  <div class="row center mt-100">
+    <div class="col-100 size-mediumn center">
+      About You
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-50">
+      <div class="underline">Full Name: {{userInfo.name}}</div>
+    </div>
+    <div class="col-50">
+      <div class="underline">Email: {{userInfo.email}}</div>
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-50">
+      <div class="underline">Phone: {{userInfo.phone}}</div>
+    </div>
+    <div class="col-50">
+      <div class="underline">Address: {{userInfo.address}}</div>
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-50">
+      <div class="underline">City: {{userInfo.city}}</div>
+    </div>
+    <div class="col-50">
+      <div class="underline">State: {{userInfo.state}}</div>
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-50">
+      <div class="underline">Zip Code: {{userInfo.zip_code}}</div>
+    </div>
+    <div class="col-50">
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-50">
+      <div class="underline">Instagram URL: {{userInfo.instagram}}</div>
+    </div>
+    <div class="col-50">
+      <div class="underline">Knot URL: {{userInfo.knot}}</div>
+    </div>
+  </div>
+  <div class="row center mt-100">
+    <div class="col-100 size-mediumn center">
+      About The Event
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-50">
+      <div class="underline">Event Name: {{eventInfo.title}}</div>
+    </div>
+    <div class="col-50">
+      <div class="underline">Date: {{eventInfo.date}}</div>
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-50">
+      <div class="underline">Exact Date Only?: {{eventInfo.exact ? 'Yes' : 'No'}}</div>
+    </div>
+    <div class="col-50">
+      <div class="underline">Time: {{eventInfo.time}}</div>
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-50">
+      <div class="underline">Guests: {{eventInfo.guest}}</div>
+    </div>
+    <div class="col-50">
+    </div>
+  </div>
+  <div *ngIf="!isPrinting" class="row mt">
+    <div class="col-100 center">
+      <button mat-raised-button color="primary" style="margin-right: 30px;" routerLink="/home">Back</button>
+      <button mat-raised-button color="primary" (click)="print()">Print</button>
+    </div>
+  </div>
+</div>
