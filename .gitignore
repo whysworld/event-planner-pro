@@ -39,7 +39,8 @@ npm-debug.log
 testem.log
 /typings
 package-lock.json
-
+CHANGELOG.md
+LICENSE.md
 # e2e
 /e2e/*.js
 !/e2e/protractor.conf.js
